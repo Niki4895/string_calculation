@@ -41,4 +41,14 @@ describe 'Calculator' do
       expect(addition.add).to eq('6, 21')
     end
   end
+
+  context "Handle multiple \n in the input string" do
+    let(:str) { '"1\n5\n15\n20", "1\n2\n3\n4\n5"' }
+    it "return formatted input and addition" do
+      addition = Calculator.new(str)
+
+      expect(addition.arr_str).to eq(["1,5,15,20", "1,2,3,4,5"])
+      expect(addition.add).to eq('41, 15')
+    end
+  end
 end
