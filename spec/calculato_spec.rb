@@ -60,4 +60,22 @@ describe 'Calculator' do
       expect(addition.add).to eq('8, 8')
     end
   end
+
+  context "Handle invalid delimeter position in the string" do
+    let(:str) { '"//:\n1:2,5", "1,2,5"' }
+    it "return addition for valid input" do
+      addition = Calculator.new(str)
+
+      expect(addition.add).to eq('3, 8')
+    end
+  end
+
+  context "handle invalid input with \n " do
+    let(:str) { '"//:\n1:2:5\n", "1,2,5"' }
+    it "return addition" do
+      addition = Calculator.new(str)
+
+      expect(addition.add).to eq("Invalid character at the end string")
+    end
+  end
 end
