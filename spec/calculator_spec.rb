@@ -78,4 +78,14 @@ describe 'Calculator' do
       expect(addition.add).to eq("Invalid character at the end string")
     end
   end
+
+
+  context "handle negative value" do
+    let(:str) { '"1,-2, 3, 4", "1,2,5"' }
+    it "return addition" do
+      addition = Calculator.new(str)
+
+      expect(addition.add).to eq("Negative numbers not allowed -2")
+    end
+  end
 end

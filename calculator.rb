@@ -15,7 +15,14 @@ class Calculator
         end
 
         raise "Invalid character at the end string" if str[-1] == ','
-        new_arr << str.split(delimeter).map(&:to_i).sum
+
+        formatted_values = str.split(delimeter).map(&:to_i)
+
+        negative_value = formatted_values.find{|value| !value.positive?}
+
+        raise "Negative numbers not allowed #{negative_value}" unless negative_value.nil?
+
+        new_arr << formatted_values.sum
       end
       new_arr.join(', ')
     rescue => error
