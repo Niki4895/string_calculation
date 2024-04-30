@@ -72,20 +72,28 @@ describe 'Calculator' do
 
   context "handle invalid input with \n " do
     let(:str) { '"//:\n1:2:5\n", "1,2,5"' }
-    it "return addition" do
+    it "return exception" do
       addition = Calculator.new(str)
 
       expect(addition.add).to eq("Invalid character at the end string")
     end
   end
 
-
   context "handle negative value" do
-    let(:str) { '"1,-2, 3, 4", "1,2,5"' }
-    it "return addition" do
+    let(:str) { '"1,-2,3,4", "1,2,5"' }
+    it "return exception" do
       addition = Calculator.new(str)
 
       expect(addition.add).to eq("Negative numbers not allowed -2")
+    end
+  end
+
+  context "handle mul negative value" do
+    let(:str) { '"1,-2,3,-4,-6", "1,2,5"' }
+    it "return exception" do
+      addition = Calculator.new(str)
+
+      expect(addition.add).to eq("Negative numbers not allowed -2, -4, -6")
     end
   end
 end

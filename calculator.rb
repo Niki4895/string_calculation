@@ -18,9 +18,9 @@ class Calculator
 
         formatted_values = str.split(delimeter).map(&:to_i)
 
-        negative_value = formatted_values.find{|value| !value.positive?}
+        negative_value = formatted_values.select(&:negative?)
 
-        raise "Negative numbers not allowed #{negative_value}" unless negative_value.nil?
+        raise "Negative numbers not allowed #{negative_value.join(', ')}" unless negative_value.empty?
 
         new_arr << formatted_values.sum
       end
