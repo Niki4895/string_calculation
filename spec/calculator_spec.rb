@@ -88,12 +88,21 @@ describe 'Calculator' do
     end
   end
 
-  context "handle mul negative value" do
+  context "handle multiple negative values" do
     let(:str) { '"1,-2,3,-4,-6", "1,2,5"' }
     it "return exception" do
       addition = Calculator.new(str)
 
       expect(addition.add).to eq("Negative numbers not allowed -2, -4, -6")
+    end
+  end
+
+  context "handle string and space in input" do
+    let(:str) { '"1,a,3,b", "1, 2, 5"' }
+    it "return addition" do
+      addition = Calculator.new(str)
+
+      expect(addition.add).to eq('4, 8')
     end
   end
 end
