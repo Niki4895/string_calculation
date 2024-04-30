@@ -51,4 +51,13 @@ describe 'Calculator' do
       expect(addition.add).to eq('41, 15')
     end
   end
+
+  context "Handle delimeter in the string" do
+    let(:str) { '"//:\n1:2:5", "1,2,5"' }
+    it "return addition" do
+      addition = Calculator.new(str)
+
+      expect(addition.add).to eq('8, 8')
+    end
+  end
 end

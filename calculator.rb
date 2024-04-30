@@ -7,7 +7,12 @@ class Calculator
   def add
     new_arr = []
     @arr_str.each do |str|
-      new_arr << str.split(',').map(&:to_i).sum
+      delimeter = ","
+      if str[0..1] == "//"
+        delimeter = str[2]
+        str.slice!(0..3)
+      end
+      new_arr << str.split(delimeter).map(&:to_i).sum
     end
     new_arr.join(', ')
   end
